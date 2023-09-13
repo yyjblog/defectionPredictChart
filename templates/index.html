@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据集和算法选择</title>
+    <style>
+        /* 样式化容器 */
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 下拉框样式 */
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* 图片容器样式 */
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit{
+            margin-left: 16px;
+            width: 90px;
+            height: 34px;
+            border-radius: 8px;
+            background: #fb7299;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: background-color .3s;
+        }
+
+        /* 图片样式 */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        label{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>数据集和算法选择</h1>
+
+    <div class="container">
+        <form method="POST" action="/plot">
+            <!-- 数据集选择下拉框 -->
+            <label for="dataset">选择数据集：</label>
+            <select id="dataset" name="dataset">
+                <option value="CK">CK</option>
+                <option value="NASA">NASA</option>
+                <!-- 添加更多选项 -->
+            </select>
+
+            <!-- 算法选择下拉框 -->
+            <label for="algorithm">选择算法：</label>
+            <select id="algorithm" name="algorithm">
+             <option value="AdaBoostClassifier">AdaBoost分类器</option>
+                <option value="BaggingClassifierPU">BaggingClassifierPU</option>
+                <option value="CBLOF">基于簇的局部离群因子</option>
+                <option value="DecisionTreeClassifier">决策树分类器</option>
+                <option value="GaussianNB">高斯朴素贝叶斯分类器</option>
+                <option value="GaussianProcessClassifier">高斯过程分类器</option>
+                <option value="KNeighborsClassifier">K最近邻分类器</option>
+                <option value="MLPClassifier">多层感知器分类器</option>
+                <option value="QuadraticDiscriminantAnalysis">二次判别分析</option>
+{#                <option value="RandomForest">RandomForest</option>#}
+                <option value="RandomForestClassifier">随机森林分类器</option>
+                <option value="SVC">支持向量分类器</option>
+                <option value="XGBOD">XGBOD</option>
+                <option value="ISDA">ISDA</option>
+
+                <!-- 添加更多选项 -->
+            </select>
+
+           <!-- 选择指标下拉框 -->
+            <label for="metric">选择指标：</label>
+            <select id="metric" name="metric">
+                <option value="precision">Precision</option>
+                <option value="recall">Recall</option>
+                <option value="pf">False Positive Rate (PF)</option>
+                <option value="F-measure">F-Measure</option>
+                <option value="accuracy">Accuracy</option>
+                <option value="AUC">AUC (Area Under the Curve)</option>
+                <!-- 添加更多指标选项 -->
+            </select>
+
+            <!-- 提交按钮 -->
+            <input type="submit" class="submit" value="生成图表">
+        </form>
+
+        <!-- 图片展示区域 -->
+        <div class="image-container">
+            {% if plot_filename %}
+                <img src="{{ plot_filename }}" alt="图表展示区域">
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
