@@ -76,7 +76,7 @@ def plot():
         plt.text(i, value, f'{value:.2f}', ha='center', va='bottom')
 
     # 保存图表为图片
-    plot_filename = f'static/{dataset_name}_{folder_name}_plot.png'
+    plot_filename = f'static/image/{dataset_name}_{folder_name}_plot.png'
     plt.savefig(plot_filename)
     plt.clf()  # 清空图表
 
