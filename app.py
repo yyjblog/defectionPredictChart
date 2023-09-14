@@ -36,9 +36,11 @@ def plot():
             data = json.load(json_file)
             data_list.append(data)
 
+    # 设置颜色
     colors = plt.cm.viridis(np.linspace(0, 1, len(data_list)))
     methods = [entry['subDataset'] for entry in data_list]
     print(selected_metric)
+
     # recall_values = [entry['result'][0]['recall'] if "recall" in entry['result'][0] else 0 for entry in data_list]
     # 根据用户选择的指标生成相应的数据
     if selected_metric == 'precision':
@@ -49,18 +51,22 @@ def plot():
         metric_values = [entry['result'][0]['recall'] if "recall" in entry['result'][0] else 0 for entry in data_list]
         ylabel = 'Recall'
     elif selected_metric == 'pf':
-        metric_values = [entry['result'][0]['pf'] if ("pf" in entry['result'][0] and isinstance(entry['result'][0]['pf'], (int, float))) else 0 for entry in data_list]
+        metric_values = [entry['result'][0]['pf'] if (
+                    "pf" in entry['result'][0] and isinstance(entry['result'][0]['pf'], (int, float))) else 0 for entry
+                         in data_list]
         ylabel = 'False Positive Rate (PF)'
     elif selected_metric == 'F-measure':
         metric_values = [entry['result'][0]['F-measure'] if "F-measure" in entry['result'][0] else 0 for entry in
                          data_list]
         ylabel = 'F-Measure'
     elif selected_metric == 'accuracy':
-        metric_values = [entry['result'][0]['accuracy'] if "accuracy" in entry['result'][0]  else 0 for entry in
+        metric_values = [entry['result'][0]['accuracy'] if "accuracy" in entry['result'][0] else 0 for entry in
                          data_list]
         ylabel = 'Accuracy'
     elif selected_metric == 'AUC':
-        metric_values = [entry['result'][0]['AUC'] if ("AUC" in entry['result'][0] and  isinstance(entry['result'][0]['AUC'], (int, float))) else 0 for entry in data_list]
+        metric_values = [entry['result'][0]['AUC'] if (
+                    "AUC" in entry['result'][0] and isinstance(entry['result'][0]['AUC'], (int, float))) else 0 for
+                         entry in data_list]
         ylabel = 'AUC (Area Under the Curve)'
     else:
         metric_values = []  # 处理其他情况
